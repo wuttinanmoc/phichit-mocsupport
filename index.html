@@ -38,12 +38,12 @@ main{max-width:960px;margin:0 auto;padding:22px 0 40px;display:grid;gap:26px}
 .group{display:grid;gap:12px}
 .eyebrow{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.06em;color:var(--muted);margin:0}
 .grid{
-  display:grid; gap:14px;
-  grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));
+  display:grid; gap:12px;
+  grid-template-columns:1fr;
 }
 a.btn{
-  display:flex; flex-direction:column; align-items:flex-start; gap:14px; text-decoration:none; color:var(--ink);
-  background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:20px; min-height:170px;
+  display:flex; flex-direction:row; align-items:center; gap:14px; text-decoration:none; color:var(--ink);
+  background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:16px 44px 16px 16px;
   position:relative;
   transition:border-color .15s ease, transform .15s ease, box-shadow .15s ease;
 }
@@ -57,10 +57,19 @@ a.btn:focus-visible{outline:2px solid var(--leaf); outline-offset:2px}
 .txt{min-width:0; flex:1}
 .name{display:block;font-family:var(--display);font-weight:600;font-size:16.5px;line-height:1.35}
 .desc{display:block;font-size:13.5px;color:var(--muted);margin-top:4px}
-.go{position:absolute;top:18px;right:20px;font-size:20px;color:var(--leaf);transition:transform .15s ease}
+.go{position:absolute;top:50%;right:16px;margin-top:-13px;font-size:20px;line-height:1;color:var(--leaf);transition:transform .15s ease}
 a.btn:hover .go{transform:translateX(3px)}
-a.btn.faded{opacity:.5;background:transparent;border-style:dashed}
-a.btn.faded:hover{opacity:.8}
+/* กำลังพัฒนา: ตัวอักษรสีเทา */
+a.btn.faded{background:transparent;border-style:dashed}
+a.btn.faded .name,a.btn.faded .desc,a.btn.faded .go{color:#9aa8a0}
+a.btn.faded .icon{background:#eceff0;color:#9aa8a0}
+a.btn.faded:hover{border-color:var(--line);box-shadow:none;transform:none}
+/* คอม/แท็บเล็ต: การ์ดแนวตั้งเรียงเป็นกริด */
+@media (min-width:700px){
+  .grid{gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+  a.btn{flex-direction:column;align-items:flex-start;gap:14px;padding:20px;min-height:170px}
+  .go{top:18px;right:20px;margin-top:0}
+}
 footer{max-width:960px;margin:0 auto;padding:4px 0 30px;color:var(--muted);font-size:12.5px}
 </style>
 </head>
@@ -192,23 +201,34 @@ footer{max-width:960px;margin:0 auto;padding:4px 0 30px;color:var(--muted);font-
     <p class="eyebrow">เอกสารและแบบฟอร์ม</p>
     <div class="grid">
 
-      <a class="btn" href="https://pla-expenseclaim.vercel.app/" target="_blank" rel="noopener">
-        <span class="icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v17H6z"/><path d="M15 2v3h3"/><path d="M9 11h6M9 15h6M9 7h3"/></svg>
-        </span>
-        <span class="txt">
-          <span class="name">ค่าใช้จ่ายในการเดินทางไปราชการ</span>
-          <span class="desc">กรอกแบบฟอร์มเพื่อสร้างเอกสารอัตโนมัติ</span>
-        </span>
-        <span class="go" aria-hidden="true">›</span>
-      </a>
-
-      <a class="btn" href="https://pla-meetingreport.vercel.app/" target="_blank" rel="noopener">
+      <a class="btn faded" href="https://pla-expenseclaim.vercel.app/" target="_blank" rel="noopener">
         <span class="icon" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg>
         </span>
         <span class="txt">
           <span class="name">รายงานการประชุม</span>
+          <span class="desc">กรอกแบบฟอร์มเพื่อสร้างเอกสารอัตโนมัติ</span>
+        </span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
+
+      <a class="btn" href="https://pla-expenseclaim.vercel.app/" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v17H6z"/><path d="M15 2v3h3"/><path d="M9 11h6M9 15h6M9 7h3"/></svg>
+        </span>
+        <span class="txt">
+          <span class="name">แบบเบิกค่าเดินทางไปราชการ (8708 &amp; บก.111)</span>
+          <span class="desc">กรอกแบบฟอร์มเพื่อสร้างเอกสารอัตโนมัติ</span>
+        </span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
+
+      <a class="btn faded" href="https://pla-expenseclaim.vercel.app/" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/></svg>
+        </span>
+        <span class="txt">
+          <span class="name">แบบสัญญายืมเงิน (8500)</span>
           <span class="desc">กรอกแบบฟอร์มเพื่อสร้างเอกสารอัตโนมัติ</span>
         </span>
         <span class="go" aria-hidden="true">›</span>
